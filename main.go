@@ -2,12 +2,14 @@ package main
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
 	http.HandleFunc("/about/", aboutHandler)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(getPort(), nil)
 }
 
 func aboutHandler(writer http.ResponseWriter, request *http.Request) {
@@ -23,4 +25,13 @@ func aboutHandler(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	writer.Write(body)
+}
+
+func getPort() string {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+		log.Println("[-] No PORT environment variable detected. Setting to ", port)
+	}
+	return ":" + port
 }
