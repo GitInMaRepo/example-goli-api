@@ -18,7 +18,7 @@ func aboutHandler(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
 	writer.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 
-	message := "Welcome to GO|i-API Version 0.1"
+	message := "Welcome to GO|i-API Version 0.0.0.1"
 	body, err := json.Marshal(message)
 	if err != nil {
 		panic(err)
